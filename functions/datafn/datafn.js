@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
+let fetch = require('node-fetch')
 
 // if(!process.env.NETLIFY){
 //   require('dotenv').config()
