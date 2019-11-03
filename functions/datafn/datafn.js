@@ -17,8 +17,8 @@ exports.handler = async function(event, context, callback) {
       // console.log(data.content)
 
       let content = data.content
-      let sha = data.sha
-      let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
+      // let sha = data.sha
+      // let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
       
       // console.log(`This is the sha: ${sha}`)
       // console.log(`This is the decoded content: ${decodedContent}`)
