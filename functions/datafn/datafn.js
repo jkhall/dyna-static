@@ -13,29 +13,25 @@ exports.handler = async function(event, context, callback) {
 
   return fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.json())
-    .then(data => ({
-      statusCode: 200,
-      body: data.name
-    }))
-      // let data = JSON.parse(body)
+    .then(data => {
       // console.log(data.content)
 
-      // let content = data.content
-      // let sha = data.sha
-      // let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
+      let content = data.content
+      let sha = data.sha
+      let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
       
       // console.log(`This is the sha: ${sha}`)
       // console.log(`This is the decoded content: ${decodedContent}`)
 
-      // let payload = {
-      //   statusCode: 200,
-      //   body: {
-      //     message: "hey"
-      //   }
-      // }
+      let payload = {
+        statusCode: 200,
+        body: {
+          message: "hey"
+        }
+      }
       // // callback(payload)
       // console.log(payload)
-      // return payload
+      return payload
 
       // // now make the post request for a new file with the appropriate headers
       // let putUrl = 'https://api.github.com/repos/jkhall/dyna-static/contents/data.json'
@@ -84,5 +80,5 @@ exports.handler = async function(event, context, callback) {
       //       payload: jData
       //     }
       //   })
-    // })
+    })
 };
