@@ -14,8 +14,8 @@ exports.handler = async function(event, context, callback) {
   // let name = event.queryStringParameters.name
   let name = "Bananas"
 
-  fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
-    .then(res => res.text())
+  return fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
+    .then(res => res.json())
     .then(body => {
       let data = JSON.parse(body)
       // console.log(data.content)
