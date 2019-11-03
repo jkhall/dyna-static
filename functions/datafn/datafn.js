@@ -60,7 +60,7 @@ exports.handler = async function(event, context, callback) {
       fetch(putUrl, {method: 'PUT', body: JSON.stringify(newBody), headers: {Authorization: `token ${process.env.GITTOKEN}`}})
         .then(res => res.json())
         .then(json => {
-          console.log(json)
+          callback(json)
         })
     })
 };
