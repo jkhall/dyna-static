@@ -17,11 +17,11 @@ exports.handler = async function(event, context, callback) {
   return fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.json())
     .then(body => {
-      let data = JSON.parse(body)
+      // let data = JSON.parse(body)
       // console.log(data.content)
 
-      let content = data.content
-      let sha = data.sha
+      // let content = data.content
+      // let sha = data.sha
       // let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
       
       // console.log(`This is the sha: ${sha}`)
@@ -30,7 +30,7 @@ exports.handler = async function(event, context, callback) {
       let payload = {
         statusCode: 200,
         body: {
-          sha: sha,
+          message: "hey"
         }
       }
       // callback(payload)
