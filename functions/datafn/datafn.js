@@ -11,9 +11,7 @@ exports.handler = async function(event, context, callback) {
   // the name of the test data that we're trying to reference
   // let name = event.queryStringParameters.name
   let name = "Bananas"
-  return {
-    body: name
-  }
+
   fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.text())
     .then(body => {
@@ -38,7 +36,7 @@ exports.handler = async function(event, context, callback) {
           console.log("Name not found in data")
           return
         } else {
-          callback({status: 400, message: "Name not found in data"})
+          callback({status: 400, body: "what the eff", message: "Name not found in data"})
           return {
             statusCode: 400,
             body:{
@@ -69,7 +67,7 @@ exports.handler = async function(event, context, callback) {
       fetch(putUrl, {method: 'PUT', body: JSON.stringify(newBody), headers: {Authorization: `token ${process.env.GITTOKEN}`}})
         .then(res => res.json())
         .then(json => {
-          callback(json)
+          callback({body: json})
         })
     })
 };
