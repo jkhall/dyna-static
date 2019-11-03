@@ -8,6 +8,8 @@ async function hello() {
 }
 
 exports.handler = async function(event, context, callback) {
+  // the name of the test data that we're trying to reference
+  let name = event.queryStringParameters.name
   fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.text())
     .then(body => {
@@ -25,7 +27,23 @@ exports.handler = async function(event, context, callback) {
       // now make the post request for a new file with the appropriate headers
       let putUrl = 'https://api.github.com/repos/jkhall/dyna-static/contents/data.json'
 
-      decodedContent.data.push("test junk")
+      // according to the params in the request, update one of the data
+      // check if the name is valid
+      if(!decodedContent.data.map((v, i) => v.name).includes(name)){
+        if(!process.env.NETLIFY){
+          console.log("Name not found in data")
+          return
+        } else {
+          callback({status: 400, message: "Name not found in data"})
+          return
+        }
+      }
+      
+      for(var node of decodedContent.data){
+        if(node.name === name){
+          node.done = "true"
+        }
+      }
 
       let newBody = {
         message: "this is a test",
