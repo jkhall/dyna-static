@@ -1,6 +1,8 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch'
+
 if(!process.env.NETLIFY){
   require('dotenv').config()
+  fetch = require('node-fetch')
 }
 
 async function hello() {
@@ -31,6 +33,7 @@ exports.handler = async function(event, context, callback) {
           sha: sha,
         }
       }
+      // callback(payload)
       console.log(payload)
       return payload
 
