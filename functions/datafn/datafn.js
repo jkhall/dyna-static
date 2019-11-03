@@ -6,11 +6,18 @@ let fetch = require('node-fetch')
 //   fetch = require('node-fetch')
 // }
 
-exports.handler = async function(event, context, callback) {
+exports.handler = async function(event, context) {
   // the name of the test data that we're trying to reference
   // let name = event.queryStringParameters.name
-  let name = "Bananas"
-  return name
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: "maybe this'll finally work",
+      event: event
+    })
+  }
+  // let name = "Bananas"
+  // return name
   // console.log("poops before fetch")
   // callback(JSON.stringify({
   //   statusCode: 200,
