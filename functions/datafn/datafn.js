@@ -36,8 +36,10 @@ exports.handler = async function(event, context, callback) {
         } else {
           callback({status: 400, message: "Name not found in data"})
           return {
-            status: 400,
-            message: "Name not found in data"
+            statusCode: 400,
+            body:{
+              message: "Name not found in data"
+            }
           }
         }
       }
