@@ -9,7 +9,8 @@ async function hello() {
 
 exports.handler = async function(event, context, callback) {
   // the name of the test data that we're trying to reference
-  let name = event.queryStringParameters.name
+  // let name = event.queryStringParameters.name
+  let name = "Bananas"
   fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.text())
     .then(body => {
