@@ -43,58 +43,67 @@ exports.handler = async function(event, context) {
       // // now make the post request for a new file with the appropriate headers
       let putUrl = 'https://api.github.com/repos/jkhall/dyna-static/contents/data.json'
 
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: 'got data',
+          sha: sha,
+          data: decodedContent.data
+        })
+      }
+
       // // according to the params in the request, update one of the data
       // // check if the name is valid
-      if(!decodedContent.data.map((v, i) => v.name).includes(name)){
-        if(!process.env.NETLIFY){
-          console.log("Name not found in data")
-          return
-        } else {
-          // callback({status: 400, body: "what the eff", message: "Name not found in data"})
-          return {
-            statusCode: 400,
-            body: JSON.stringify({
-              message: "Name not found"
-            })
-          }
-        }
-      }
+    //   if(!decodedContent.data.map((v, i) => v.name).includes(name)){
+    //     if(!process.env.NETLIFY){
+    //       console.log("Name not found in data")
+    //       return
+    //     } else {
+    //       // callback({status: 400, body: "what the eff", message: "Name not found in data"})
+    //       return {
+    //         statusCode: 400,
+    //         body: JSON.stringify({
+    //           message: "Name not found"
+    //         })
+    //       }
+    //     }
+    //   }
       
-      for(var node of decodedContent.data){
-        if(node.name === name){
-          node.done = "true"
-        }
-      }
+    //   for(var node of decodedContent.data){
+    //     if(node.name === name){
+    //       node.done = "true"
+    //     }
+    //   }
 
-      let newBody = {
-        message: "this is a test",
-        committer: {
-          name: "Jordan",
-          email: "jordankhall23@gmail.com"
-        },
-        content: Buffer.from(JSON.stringify(decodedContent)).toString('base64'),
-        sha: sha
-      }
+    //   let newBody = {
+    //     message: "this is a test",
+    //     committer: {
+    //       name: "Jordan",
+    //       email: "jordankhall23@gmail.com"
+    //     },
+    //     content: Buffer.from(JSON.stringify(decodedContent)).toString('base64'),
+    //     sha: sha
+    //   }
 
-      // console.log(JSON.stringify(newBody))
+    //   // console.log(JSON.stringify(newBody))
 
-      fetch(putUrl, {method: 'PUT', body: JSON.stringify(newBody), headers: {Authorization: `token ${process.env.GITTOKEN}`}})
-        .then(res => res.json())
-        .then(jData => {
-          // callback({body: json})
-          return {
-            statusCode: 200,
-            body: JSON.stringify({
-              message: `${name} marked done!`
-            })
-          }
-        })
-        .catch(err => ({
-          statusCode: 400,
-          body: JSON.stringify({
-            message: err
-          })
-        }))
+    //   fetch(putUrl, {method: 'PUT', body: JSON.stringify(newBody), headers: {Authorization: `token ${process.env.GITTOKEN}`}})
+    //     .then(res => res.json())
+    //     .then(jData => {
+    //       // callback({body: json})
+    //       return {
+    //         statusCode: 200,
+    //         body: JSON.stringify({
+    //           message: `${name} marked done!`
+    //         })
+    //       }
+    //     })
+    //     .catch(err => ({
+    //       statusCode: 400,
+    //       body: JSON.stringify({
+    //         message: err
+    //       })
+    //     }))
     })
     .catch(err => ({
       statusCode: 400,
