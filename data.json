@@ -1,1 +1,16 @@
-{"data":["stuff","more stuff","test junk","test junk","test junk"]}
+{
+    "data": [
+       {
+           "name": "Pickles",
+           "done": "false"
+       },
+       {
+           "name": "Bananas",
+           "done": "false"
+       },
+       {
+           "name": "Sardines",
+           "done": "false"
+       }
+    ]
+}
