@@ -10,7 +10,7 @@ exports.handler = async function(event, context, callback) {
   // the name of the test data that we're trying to reference
   // let name = event.queryStringParameters.name
   let name = "Bananas"
-  return "poops before fetch"
+  console.log("poops before fetch")
   return fetch('https://api.github.com/repos/jkhall/dyna-static/contents/data.json')
     .then(res => res.json())
     .then(data => {
@@ -30,7 +30,7 @@ exports.handler = async function(event, context, callback) {
       //   }
       // }
       // // callback(payload)
-      // console.log(payload)
+      console.log(`This is the data: ${content}`)
       return "poops"
 
       // // now make the post request for a new file with the appropriate headers
