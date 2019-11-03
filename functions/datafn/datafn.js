@@ -1,13 +1,9 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
-if(!process.env.NETLIFY){
-  require('dotenv').config()
-  fetch = require('node-fetch')
-}
-
-async function hello() {
-  return Promise.resolve("Hello, World");
-}
+// if(!process.env.NETLIFY){
+//   require('dotenv').config()
+//   fetch = require('node-fetch')
+// }
 
 exports.handler = async function(event, context, callback) {
   // the name of the test data that we're trying to reference
