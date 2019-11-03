@@ -36,7 +36,7 @@ exports.handler = async function(event, context, callback) {
           console.log("Name not found in data")
           return
         } else {
-          callback({status: 400, body: "what the eff", message: "Name not found in data"})
+          // callback({status: 400, body: "what the eff", message: "Name not found in data"})
           return {
             statusCode: 400,
             body:{
@@ -66,10 +66,11 @@ exports.handler = async function(event, context, callback) {
 
       fetch(putUrl, {method: 'PUT', body: JSON.stringify(newBody), headers: {Authorization: `token ${process.env.GITTOKEN}`}})
         .then(res => res.json())
-        .then(json => {
+        .then(jData => {
           // callback({body: json})
           return {
-            body: json
+            body: "What the eff",
+            payload: jData
           }
         })
     })
