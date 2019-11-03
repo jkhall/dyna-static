@@ -20,18 +20,19 @@ exports.handler = async function(event, context, callback) {
 
       let content = data.content
       let sha = data.sha
-      let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
+      // let decodedContent = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
       
       // console.log(`This is the sha: ${sha}`)
       // console.log(`This is the decoded content: ${decodedContent}`)
 
-      return {
+      let payload = {
         statusCode: 200,
         body: {
           sha: sha,
-          data: decodedContent.data
         }
       }
+      console.log(payload)
+      return payload
 
       // // now make the post request for a new file with the appropriate headers
       // let putUrl = 'https://api.github.com/repos/jkhall/dyna-static/contents/data.json'
